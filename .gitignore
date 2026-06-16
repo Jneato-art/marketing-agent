@@ -1,0 +1,1 @@
+# Secrets\n.env\n*.key\n\n# Python\n__pycache__/\n*.pyc\n.venv/\nvenv/\n\n# OS\n.DS_Store\nThumbs.db\n\n# Agent run artifacts\nagent/out/\n*.log\n
