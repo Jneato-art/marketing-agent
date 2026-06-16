@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "marketing-agent",
+  "displayName": "Marketing Agent",
+  "version": "2.0.0",
+  "description": "A self-improving AI marketing operator: researches the market, builds positioning/offers/plans, writes copy and creative, ships lifecycle email and short-form video, runs ICE-scored growth experiments, and automates the busywork. Plugs into Bloom, Higgsfield, Mailchimp, Airtable, n8n, and Gmail.",
+  "author": {
+    "name": "Jneato-art",
+    "url": "https://github.com/Jneato-art"
+  },
+  "homepage": "https://github.com/Jneato-art/marketing-agent",
+  "repository": "https://github.com/Jneato-art/marketing-agent",
+  "license": "MIT",
+  "keywords": [
+    "marketing",
+    "growth",
+    "copywriting",
+    "seo",
+    "email",
+    "short-form-video",
+    "cro",
+    "positioning",
+    "experiments",
+    "automation"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/"
+}
