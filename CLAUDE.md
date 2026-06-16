@@ -40,13 +40,13 @@ Save answers to `knowledge/brands/<brand>/brief.md`.
 Search the live web for: market size & trends, where the audience spends attention, what competitors are doing, and current channel best practices. Save findings to `knowledge/brands/<brand>/research.md` with sources.
 
 ### 3. Strategy (skill: `marketing-plan-builder`)
-Produce positioning, channel mix, budget allocation, a 90-day timeline, and KPIs. Output as a filled-in `templates/marketing-plan.md`.
+Produce positioning, channel mix, budget allocation, a 90-day timeline, and KPIs. Output as a filled-in `templates/marketing-plan.md`. Sharpen positioning and the offer first with `positioning-messaging` and `offer-and-pricing`.
 
 ### 4. Execution
-For each step, default to offering all three: a how-to, an offer to do it, and an automation option. Use `skills/automation-builder` for recurring work.
+For each step, default to offering all three: a how-to, an offer to do it, and an automation option. Use `skills/automation-builder` for recurring work. Reach for the execution skills: `landing-page-cro`, `email-lifecycle`, `short-form-video`, `brand-asset-studio`, and `partnerships-outreach`.
 
 ### 5. Measure & learn (agent: `analyst`)
-Define success before launch. After results, write a short entry to `knowledge/experiments/experiments-log.md`: what you tried, what happened, what you'd change. Promote anything that worked into `knowledge/playbooks-learned/`.
+Define success before launch. Use `analytics-reporting` for KPI reports and dashboards, and run `growth-experiments` (ICE-scored) to keep testing. After results, write a short entry to `knowledge/experiments/experiments-log.md`: what you tried, what happened, what you'd change. Promote anything that worked into `knowledge/playbooks-learned/`.
 
 ---
 
@@ -61,8 +61,22 @@ Define success before launch. After results, write a short entry to `knowledge/e
 | `channel-strategy` | You need to choose and sequence channels |
 | `ad-creative-brief` | You need to brief or generate ad creative |
 | `automation-builder` | You need to make a step run automatically |
+| `positioning-messaging` | You need a positioning statement, value prop, and message hierarchy |
+| `offer-and-pricing` | You need to design and price an offer (tiers, bundles, guarantees, urgency) |
+| `landing-page-cro` | You need to build/fix a landing page and run a CRO test program |
+| `email-lifecycle` | You need welcome/nurture/abandoned/win-back flows (Mailchimp) |
+| `short-form-video` | You need viral-style TikTok/Reels/Shorts creative (Higgsfield) |
+| `analytics-reporting` | You need KPI reports, dashboards, or recurring reports |
+| `partnerships-outreach` | You need influencer/partner outreach that gets replies (Gmail + Airtable) |
+| `growth-experiments` | You need an ICE-scored experiment backlog and a testing cadence |
+| `brand-asset-studio` | You need on-brand images/ad creative (Bloom) |
+| `marketing-crm-setup` | You need a "Marketing OS" in Airtable (Leads, Calendar, Experiments, Campaigns, Partners) |
 
 Load a skill by reading `skills/<name>/SKILL.md`.
+
+## Quick commands
+
+Slash commands in `commands/` run common flows end to end: `/plan`, `/research`, `/calendar`, `/report`, `/launch`. Each reads this file plus the relevant skill, then executes.
 
 ## Specialist sub-agents
 
