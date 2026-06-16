@@ -5,7 +5,7 @@ A **self-improving AI marketing agent** that researches how to market any produc
 It is built to run two ways:
 
 1. **Inside Claude (Cowork / Claude Code)** — open this repo and the `skills/`, `agents/`, and `playbooks/` turn Claude into a marketing operator you talk to.
-2. **Autonomously** — the `agent/` folder is a Python program built on the [Claude Agent SDK](https://docs.claude.com/en/api/agent-sdk/overview) that can research, plan, and produce deliverables on its own or on a schedule.
+2. **Autonomously** — the `agent/` folder is a Python program built on the [Claude Agent SDK](https://docs.claude.com/en/api/agent-sdk/overview) that can research, plan, and produce deliverables on its own or on a schedule, using a real built-in **tools layer**.
 
 ---
 
@@ -92,7 +92,7 @@ The agent's repeatable capabilities live in `skills/`. v2 adds ten advanced skil
 | `brand-asset-studio` | On-brand image/ad generation from real proven formats | Bloom |
 | `marketing-crm-setup` | A "Marketing OS" base: Leads, Calendar, Experiments, Campaigns, Partners | Airtable, n8n |
 
-The core skills (`market-research`, `competitor-analysis`, `marketing-plan-builder`, `content-calendar`, `channel-strategy`, `ad-creative-brief`, `automation-builder`) remain.
+The core skills (`market-research`, `competitor-analysis`, `marketing-plan-builder`, `content-calendar`, `channel-strategy`, `ad-creative-brief`, `automation-builder`) remain. v3 adds `autonomous-research`, which drives the built-in tools layer below.
 
 ---
 
@@ -106,6 +106,21 @@ The agent loads its brain, asks a few brand questions, researches live, and prod
 
 **As an autonomous program:** see [docs/quickstart.md](docs/quickstart.md).
 
+### Built-in tools
+
+The autonomous runtime ships with a real, working tools layer in `agent/tools/`, exposed to the agent as an in-process MCP server (via the Claude Agent SDK's `@tool` + `create_sdk_mcp_server`). These do actual research and analysis — not just prose:
+
+| Tool | What it does |
+|---|---|
+| `web_research` | Multi-query web research: plan → search → scrape → structured digest with source URLs |
+| `competitor_scan` | Fetch competitor URLs → positioning signals (title, meta, H1s, pricing hints, CTAs) |
+| `seo_audit` | On-page SEO basics for a page (title/meta, headings, word count, links, alt coverage, issues, score) |
+| `keyword_ideas` | Expand a seed term into keyword/topic ideas grouped by search intent |
+| `content_scorer` | Score a draft vs a target keyword + readability (Flesch), with concrete fixes |
+| `trends_monitor` | Pull recent items for a topic from RSS/news feeds to spot what's trending |
+
+Each module is runnable on its own (`python agent/tools/<name>.py` runs a smoke test). Inputs/outputs and examples are documented in [agent/tools/README.md](agent/tools/README.md). The `autonomous-research` skill tells the agent when and how to call them.
+
 ---
 
 ## Repo map
@@ -113,13 +128,13 @@ The agent loads its brain, asks a few brand questions, researches live, and prod
 ```
 CLAUDE.md         The agent's brain - role, principles, operating loop
 .claude-plugin/   Plugin + marketplace manifests (one-step install)
-skills/           Repeatable capabilities (research, planning, content, automation, + v2 skills)
+skills/           Repeatable capabilities (research, planning, content, automation, + v2/v3 skills)
 commands/         Slash commands (/plan, /research, /calendar, /report, /launch)
 agents/           Specialist sub-agents (researcher, strategist, copywriter, analyst)
 playbooks/        Proven marketing playbooks (launch, growth, SEO, paid, social)
 templates/        Fill-in deliverables (plan, competitor matrix, briefs, calendar)
 knowledge/        The agent's memory - what it has learned, per brand and experiment
-agent/            Autonomous Python agent (Claude Agent SDK)
+agent/            Autonomous Python agent (Claude Agent SDK) + built-in tools/ layer
 docs/             Architecture, self-learning, connectors, quickstart
 ```
 
@@ -128,6 +143,12 @@ docs/             Architecture, self-learning, connectors, quickstart
 ## Connected tools it can use
 
 This agent plugs into marketing tools via MCP connectors. See [docs/connectors.md](docs/connectors.md) for the full list and what each unlocks (image/ad generation, video, email campaigns, CRM, workflow automation).
+
+---
+
+## Powered by (open source)
+
+The built-in tools layer is original code that builds on patterns from excellent permissively-licensed projects — GPT Researcher (Apache-2.0), readability-lxml / Trafilatura (Apache-2.0), textstat (MIT), feedparser (BSD), Requests / Beautiful Soup / lxml / httpx. Full credits, licenses, and exactly what we adapted are in [ATTRIBUTIONS.md](ATTRIBUTIONS.md). No GPL/AGPL/LGPL or unlicensed code is used.
 
 ---
 

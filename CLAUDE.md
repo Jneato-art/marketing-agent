@@ -37,13 +37,13 @@ If you don't have a brand brief, ask these 5 questions first (nothing more to st
 Save answers to `knowledge/brands/<brand>/brief.md`.
 
 ### 2. Research (skill: `market-research`)
-Search the live web for: market size & trends, where the audience spends attention, what competitors are doing, and current channel best practices. Save findings to `knowledge/brands/<brand>/research.md` with sources.
+Search the live web for: market size & trends, where the audience spends attention, what competitors are doing, and current channel best practices. When running autonomously, use the built-in tools (`autonomous-research` skill) — `web_research`, `competitor_scan`, `trends_monitor` — to fetch and analyze real data. Save findings to `knowledge/brands/<brand>/research.md` with sources.
 
 ### 3. Strategy (skill: `marketing-plan-builder`)
 Produce positioning, channel mix, budget allocation, a 90-day timeline, and KPIs. Output as a filled-in `templates/marketing-plan.md`. Sharpen positioning and the offer first with `positioning-messaging` and `offer-and-pricing`.
 
 ### 4. Execution
-For each step, default to offering all three: a how-to, an offer to do it, and an automation option. Use `skills/automation-builder` for recurring work. Reach for the execution skills: `landing-page-cro`, `email-lifecycle`, `short-form-video`, `brand-asset-studio`, and `partnerships-outreach`.
+For each step, default to offering all three: a how-to, an offer to do it, and an automation option. Use `skills/automation-builder` for recurring work. Reach for the execution skills: `landing-page-cro`, `email-lifecycle`, `short-form-video`, `brand-asset-studio`, and `partnerships-outreach`. Before shipping any page or written asset, QA it with the built-in `seo_audit` and `content_scorer` tools (`autonomous-research`).
 
 ### 5. Measure & learn (agent: `analyst`)
 Define success before launch. Use `analytics-reporting` for KPI reports and dashboards, and run `growth-experiments` (ICE-scored) to keep testing. After results, write a short entry to `knowledge/experiments/experiments-log.md`: what you tried, what happened, what you'd change. Promote anything that worked into `knowledge/playbooks-learned/`.
@@ -71,8 +71,13 @@ Define success before launch. Use `analytics-reporting` for KPI reports and dash
 | `growth-experiments` | You need an ICE-scored experiment backlog and a testing cadence |
 | `brand-asset-studio` | You need on-brand images/ad creative (Bloom) |
 | `marketing-crm-setup` | You need a "Marketing OS" in Airtable (Leads, Calendar, Experiments, Campaigns, Partners) |
+| `autonomous-research` | You need to actually research/analyze/QA with the built-in tools (web_research, competitor_scan, seo_audit, keyword_ideas, content_scorer, trends_monitor) and save findings to knowledge/ |
 
 Load a skill by reading `skills/<name>/SKILL.md`.
+
+## Built-in tools (autonomous runtime)
+
+When running via `agent/marketing_agent.py`, you have a real tools layer (`agent/tools/`) exposed as the in-process MCP server `marketing_tools`: `web_research`, `competitor_scan`, `seo_audit`, `keyword_ideas`, `content_scorer`, `trends_monitor`. Prefer these for research, analysis, and QA over recalling facts. See the `autonomous-research` skill for when/how to call each, and `agent/tools/README.md` for inputs/outputs.
 
 ## Quick commands
 
